@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+//struct para armazenar dados dos clientes
 struct dados {
     int id;
     char dono[20];
@@ -10,8 +11,9 @@ struct dados {
     char raca[20];
     char senha[20];
     float saldo;
-}*cadastro;
+}*cadastro; 
 
+//logo do sistema
 void logo () {
 
     printf("-----------------------------\n");
