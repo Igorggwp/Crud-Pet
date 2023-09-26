@@ -17,7 +17,7 @@ struct dados {
 void logo () {
 
     printf("-----------------------------\n");
-    printf("|        Pet Shop           |\n");
+    printf("|        Pet&Gatô           |\n");
     printf("-----------------------------\n");
 
 }
