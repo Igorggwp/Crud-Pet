@@ -10,6 +10,8 @@ struct dados {
     char pet[20];
     char raca[20];
     char senha[20];
+    char servico[20]; 
+    char horario[20];
     float saldo;
 }*cadastro; 
 
@@ -74,10 +76,18 @@ int init(int *tamanho) {
         }
         if(cont == 6){
             strcpy(aux, vet);
+            strcpy(cadastro[i].servico, aux);
+        }
+        if(cont == 7){
+            strcpy(aux, vet);
+            strcpy(cadastro[i].horario, aux);
+        }
+        if(cont == 8){
+            strcpy(aux, vet);
             cadastro[i].saldo = atof(aux);
         }
         cont++;
-        if (cont >=7){
+        if (cont >=9){
             cont = 0;
         }   
     }
@@ -99,6 +109,8 @@ int finit(int *tamanho) {
         fprintf(file, "%s", cadastro[i].pet);
         fprintf(file, "%s", cadastro[i].raca);
         fprintf(file, "%s", cadastro[i].senha);
+        fprintf(file, "%s", cadastro[i].servico);
+        fprintf(file, "%s", cadastro[i].horario);
         fprintf(file, "%f\n", cadastro[i].saldo);
     }
     fclose(file);
