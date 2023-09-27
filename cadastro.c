@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Struct para armazenar dados dos produtos
 struct produto {
     int id;
     char nome[50];
@@ -17,21 +18,25 @@ void logo () {
 
 }
 
-int init(int *tamanho) {
+/* Inicializar txt dos dados dos Produtos */
+
+int pinit(int *tamanho_produto) {
     FILE *file;
+    // Abre o txt para a leitura
     file = fopen("produto-pet.txt", "r");
+    // Verifica se o arquivo foi aberto corretamente
     if (file == NULL) {
         printf("Problemas na consulta do banco de dados.\n");
         return 0;
     }
 
-    char vet[20], aux[20];
-    int cont = 0, i = -1, mal = 0;
+    char vet[20], aux[20]; // Vetores para armazenar temporariamente os dados
+    int cont = 0, i = -1, mal = 0; // Variaveis de controle
 
-    while (fgets(vet, 100, file) != NULL) {
+    while (fgets(vet, 100, file) != NULL) {  // Le o arquivo linha por linha
         
         if(cont == 0){
-            if(mal == 0){
+            if(mal == 0){ // Alocação de memoria para a struct dados e inicializacao de campos
                 produtos = (struct produto*) malloc(sizeof(struct produto));
                 mal++;
                 if(produtos == NULL){
@@ -39,14 +44,15 @@ int init(int *tamanho) {
                         
                 }   
             }else{
-                produtos = (struct produto*) realloc(produtos, (*tamanho+1) * sizeof(struct produto));
+                produtos = (struct produto*) realloc(produtos, (*tamanho_produto+1) * sizeof(struct produto));
             }
             strcpy(aux, vet);
             i++;
             produtos[i].id = atoi(aux);
-            *tamanho += 1;
+            *tamanho_produto += 1; // Atualiza o tamanho
         }
 
+        // Armazena os dados nos campos correspondentes
         if(cont == 1){
             strcpy(aux, vet);
             strcpy(produtos[i].nome, aux);
@@ -61,79 +67,87 @@ int init(int *tamanho) {
         }
         cont++;
         if (cont >=4){
-            cont = 0;
+            cont = 0; // Reinicia o contador de campos
         }   
     }
-    fclose(file);
+    fclose(file); // Fecha o arquivo
     return 0;
 }
 
-int finit(int *tamanho) {
+/* finit Escreve os registros do vetor 'cadastro' no arquivo 'produto-pet.txt'. */
+
+int pfinit(int *tamanho_produto) {
+    // Abre o txt para a escrita
     FILE *file;
     file = fopen("produto-pet.txt", "w");
+    // Verifica se o arquivo foi aberto corretamente
     if (file == NULL) {
         printf("Problemas na gravacao do banco de dados.\n");
         return 0;
     }
-    for (int i = 0; i < *tamanho; i++) {
+    for (int i = 0; i < *tamanho_produto; i++) { // Itera sobre os registros e os escreve no arquivo
+    // Escreve cada campo dos dados no arquivo
         fprintf(file, "%i\n", produtos[i].id);
         fprintf(file, "%s", produtos[i].nome);
         fprintf(file, "%i\n", produtos[i].quantidade);
         fprintf(file, "%f\n", produtos[i].preco);
     }
-    fclose(file);
+    fclose(file); // Fecha o arquivo
     return 0;
 }
 
 /* Cadastrar Produto */
 
-int CadastrarProduto(int *tamanho) {
+int CadastrarProduto(int *tamanho_produto) {
     int idcad = 0;
 
-    for (int i = 0; i < *tamanho; i++) {
+    // Itera sobre os cadastros existentes para encontrar o maior ID
+    for (int i = 0; i < *tamanho_produto; i++) {
         if (produtos[i].id > idcad) {
             idcad = produtos[i].id;
         }
     }
 
-    idcad++;
+    idcad++;  // Incrementa o maior ID encontrado para obter o proximo ID disponivel
 
-    produtos = (struct produto *)realloc(produtos, (*tamanho + 1) * sizeof(struct produto));
+    // Realoca memoria para o vetor 'cadastro' para acomodar o novo cadastro
+    produtos = (struct produto *)realloc(produtos, (*tamanho_produto + 1) * sizeof(struct produto));
 
-    if (produtos == NULL) {
+    if (produtos == NULL) { // Verifica se a realocação foi bem-sucedida
         printf("Erro na realocacao de memoria.\n");
         return 0;
     }
 
-    produtos[*tamanho].id = idcad;
+    // Preenche os detalhes do novo cadastro
+    produtos[*tamanho_produto].id = idcad;
     fflush(stdin);
     printf("Digite o nome do Produto: ");
-    gets(produtos[*tamanho].nome);
-    strcat(produtos[*tamanho].nome, "\n");
+    gets(produtos[*tamanho_produto].nome);
+    strcat(produtos[*tamanho_produto].nome, "\n");
     fflush(stdin);
     printf("Digite a quantidade de Produtos: ");
-    scanf("%d", &produtos[*tamanho].quantidade);
+    scanf("%d", &produtos[*tamanho_produto].quantidade);
     fflush(stdin);
     printf("Digite o valor do Produto: ");
-    scanf("%f", &produtos[*tamanho].preco);
+    scanf("%f", &produtos[*tamanho_produto].preco);
     fflush(stdin);
     printf("CADASTRADO COM SUCESSO!\nO ID do produto e: %d\n", idcad);
 
-    *tamanho += 1;
+    *tamanho_produto += 1; // Atualiza o tamanho do vetor 'cadastro'
 
-    finit(tamanho);
-    return idcad;
+    pfinit(tamanho_produto); // Chama a função 'finit' para finalizar o cadastro
+    return idcad; // Retorna o ID cadastrado
 }
 
 /* Procurar Produto */
 
-void ProcurarProduto(int *tamanho) {
+void ProcurarProduto(int *tamanho_produto) {
     int id_procurar, produto_encontrado = 0;
 
     printf("Digite o ID do produto que deseja procurar: ");
     scanf("%d", &id_procurar);
 
-    for (int i = 0; i < *tamanho; i++) {
+    for (int i = 0; i < *tamanho_produto; i++) {
         if (id_procurar == produtos[i].id) {
             printf("Produto encontrado!\n");
             printf("ID: %d\n", produtos[i].id);
@@ -152,7 +166,7 @@ void ProcurarProduto(int *tamanho) {
 
 /* Atualizar Produto */
 
-void AtualizarProduto(int *tamanho) {
+void AtualizarProduto(int *tamanho_produto) {
     int idat, subs, exist = -1, new, new2, atualizado = 1;
 
     printf("Digite o ID do cadastro que deseja atualizar\nDigite 0 para cancelar\n->");
@@ -161,7 +175,7 @@ void AtualizarProduto(int *tamanho) {
         return;
     }
 
-    for (int i = 0; i < *tamanho; i++) {
+    for (int i = 0; i < *tamanho_produto; i++) {
         if (idat == produtos[i].id) {
             exist = i;
         }
@@ -172,7 +186,7 @@ void AtualizarProduto(int *tamanho) {
     } else {
         do {
             printf("-------------------\n");
-            for (int i = 0; i < *tamanho; i++) {
+            for (int i = 0; i < *tamanho_produto; i++) {
                 if (idat == produtos[i].id) {
                     printf("Quais dados deseja substituir?\n");
                     printf("-------------------\n");
@@ -246,16 +260,16 @@ void AtualizarProduto(int *tamanho) {
             }
         } while (new2 == 1);
     }
-    finit(tamanho);
+    pfinit(tamanho_produto);
 }
 
 
 /* Listar Produtos */
 
-int ListarProdutos(int *tamanho) {
+int ListarProdutos(int *tamanho_produto) {
     int usuarios = 0;
 
-    for (int i = 0; i < *tamanho; i++) {
+    for (int i = 0; i < *tamanho_produto; i++) {
         if (produtos[i].id != 0) {
             printf("ID: %d\n", produtos[i].id);
             printf("Nome do Produto: %s\n", produtos[i].nome);
@@ -275,7 +289,7 @@ int ListarProdutos(int *tamanho) {
 
 /* Excluir Produto */
 
-int ExcluirProduto(int *tamanho) {
+int ExcluirProduto(int *tamanho_produto) {
     int idb = 0, flag = 0, esc = 0;
 
     //inicio do loop princiapl
@@ -294,7 +308,7 @@ int ExcluirProduto(int *tamanho) {
         }
 
         // percorrer o array de produtos
-        for (int i = 0; i < *tamanho; i++) {
+        for (int i = 0; i < *tamanho_produto; i++) {
             if (idb == produtos[i].id) { // verificar se o ID corresponde a um cadastro
                 flag = 1;
                 // exibe as informacoes
@@ -310,15 +324,15 @@ int ExcluirProduto(int *tamanho) {
                 }
 
                 if (esc == 1) { // excluindo o cadastro
-                    if (i == *tamanho-1) {
-                        produtos = (struct produto*) realloc(produtos, (*tamanho-1) * sizeof(struct produto));
+                    if (i == *tamanho_produto-1) {
+                        produtos = (struct produto*) realloc(produtos, (*tamanho_produto-1) * sizeof(struct produto));
                     } else {
-                        produtos[i].id = produtos[*tamanho-1].id;
-                        produtos[i].quantidade = produtos[*tamanho-1].quantidade;
-                        produtos[i].preco = produtos[*tamanho-1].preco;
-                        produtos = (struct produto*) realloc(produtos, (*tamanho-1) * sizeof(struct produto));
+                        produtos[i].id = produtos[*tamanho_produto-1].id;
+                        produtos[i].quantidade = produtos[*tamanho_produto-1].quantidade;
+                        produtos[i].preco = produtos[*tamanho_produto-1].preco;
+                        produtos = (struct produto*) realloc(produtos, (*tamanho_produto-1) * sizeof(struct produto));
                     }
-                    *tamanho -= 1;
+                    *tamanho_produto -= 1;
                     printf("Usuario excluido com sucesso\n");
                     esc = -1;
                 }
@@ -338,8 +352,8 @@ int ExcluirProduto(int *tamanho) {
     } while (esc == 1);
 
     // Ordenacao do array 'produtos' por meio de bubble sort
-    for (int i = 0; i < *tamanho; i++) { //variaveis de controle
-        for (int j = i; j < *tamanho; j++) {
+    for (int i = 0; i < *tamanho_produto; i++) { //variaveis de controle
+        for (int j = i; j < *tamanho_produto; j++) {
             if (produtos[i].id > produtos[j].id) { //se i for maior que j, ocorre a troca crescente
                 struct produto temp = produtos[i]; // struct dados temp armazena temporariamente uma cadastro durante a troca
                 produtos[i] = produtos[j];
@@ -353,8 +367,8 @@ int ExcluirProduto(int *tamanho) {
 
 int main () {
     
-    int tamanho = 0;
-    init(&tamanho);
+    int tamanho_produto = 0;
+    pinit(&tamanho_produto);
 
     int esc_adm, very = 0, very3 = 0, esc = 0, flag = 0, very4 = 0;
     char senha[8], confsenha[8] = "petshop";
@@ -388,7 +402,7 @@ int main () {
                                 printf("----------------------------------------\n");
                                 printf("|           Cadastrar Produto          |\n");
                                 printf("----------------------------------------\n");
-                                CadastrarProduto(&tamanho);
+                                CadastrarProduto(&tamanho_produto);
 
                                 break;
                             case 2:
@@ -396,7 +410,7 @@ int main () {
                                 printf("----------------------------------------\n");
                                 printf("|           Procurar Produto           |\n");
                                 printf("----------------------------------------\n");
-                                ProcurarProduto(&tamanho);
+                                ProcurarProduto(&tamanho_produto);
 
                                 break;
                             case 3:
@@ -404,7 +418,7 @@ int main () {
                                 printf("----------------------------------------\n");
                                 printf("|            Atualizar Produto            |\n");
                                 printf("----------------------------------------\n");
-                                AtualizarProduto(&tamanho);
+                                AtualizarProduto(&tamanho_produto);
 
                                 break;
                             case 4:
@@ -412,7 +426,7 @@ int main () {
                                 printf("----------------------------------------\n");
                                 printf("|             Listar Produto           |\n");
                                 printf("----------------------------------------\n");
-                                ListarProdutos(&tamanho);
+                                ListarProdutos(&tamanho_produto);
 
                                 break;
                             case 5:
@@ -420,7 +434,7 @@ int main () {
                                 printf("----------------------------------------\n");
                                 printf("|           Excluir Produto           |\n");
                                 printf("----------------------------------------\n");
-                               ExcluirProduto(&tamanho);
+                               ExcluirProduto(&tamanho_produto);
 
                                 break;
                             case 6:
@@ -463,6 +477,6 @@ int main () {
         } while (very3 != 1);
 
     } while (very != 0);
-    finit(&tamanho);
+    pfinit(&tamanho_produto);
     free(produtos);
 }

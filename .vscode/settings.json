@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "listarproduto.h": "c",
+        "excluirproduto.h": "c",
+        "procurarproduto.h": "c",
+        "cadastrarproduto.h": "c"
+    }
+}

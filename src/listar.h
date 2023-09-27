@@ -1,40 +1,23 @@
-<<<<<<< HEAD
 int listar(int *tamanho) {
     int usuarios = 0;
 
-    for (int i = 0; i < *tamanho; i++) {
-        if (cadastro[i].id != 0) {
-            printf("ID: %d\n", cadastro[i].id);
-            printf("Dono: %s\n", cadastro[i].dono);
-            printf("Nome: %s\n", cadastro[i].nome);
-            printf("Pet: %s\n", cadastro[i].pet);
-            printf("Raca: %s\n", cadastro[i].raca);
-            printf("Senha: %s\n", cadastro[i].senha);
-            printf("Saldo: %.2f\n", cadastro[i].saldo);
-            printf("Servico: %s\n", cadastro[i].servico);
-            printf("Horario: %s\n", cadastro[i].horario);
-            printf("------------------------------\n\n");
-            usuarios++;
-        }
-    }
-
-    if (usuarios == 0) {
+    // Verifica se o ponteiro 'cadastro' é nulo
+    if (cadastro == NULL) {
+        printf("Erro: Nenhum cadastro encontrado.\n");
         return 0;
     }
 
-    return usuarios;
-=======
-int listar(int *tamanho) {
-    int usuarios = 0;
-
+    // Loop para varrer todos os Cadastros e exibir todos na tela
     for (int i = 0; i < *tamanho; i++) {
         if (cadastro[i].id != 0) {
             printf("ID: %d\n", cadastro[i].id);
-            printf("Dono: %s\n", cadastro[i].dono);
-            printf("Nome: %s\n", cadastro[i].nome);
-            printf("Pet: %s\n", cadastro[i].pet);
-            printf("Raca: %s\n", cadastro[i].raca);
-            printf("Senha: %s\n", cadastro[i].senha);
+            printf("Dono: %s", cadastro[i].dono);
+            printf("Nome: %s", cadastro[i].nome);
+            printf("Pet: %s", cadastro[i].pet);
+            printf("Raca: %s", cadastro[i].raca);
+            printf("Senha: %s", cadastro[i].senha);
+            printf("Servico: %s", cadastro[i].servico);
+            printf("Horario: %s", cadastro[i].horario);
             printf("Saldo: %.2f\n", cadastro[i].saldo);
             printf("------------------------------\n\n");
             usuarios++;
@@ -42,9 +25,8 @@ int listar(int *tamanho) {
     }
 
     if (usuarios == 0) {
-        return 0;
+        printf("Nenhum usuário cadastrado.\n");
     }
 
     return usuarios;
->>>>>>> main
 }
