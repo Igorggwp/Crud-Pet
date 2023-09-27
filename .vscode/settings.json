@@ -4,5 +4,6 @@
         "excluirproduto.h": "c",
         "procurarproduto.h": "c",
         "cadastrarproduto.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

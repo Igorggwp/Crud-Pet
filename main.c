@@ -218,6 +218,7 @@ int pfinit(int *tamanho_produto) {
 #include "src/atualizar.h"
 #include "src/excluir.h"
 #include "src/listar.h"
+#include "src/agendamento.h"
 #include "src/produto/CadastrarProduto.h"
 #include "src/produto/ProcurarProduto.h"
 #include "src/produto/AtualizarProduto.h"
@@ -249,7 +250,7 @@ int main () {
                         flag = 0;
                         system("cls");
                         logo();
-                        printf("Seja bem vindo!\n\nSelecione a opcao desejada\n[1]Cadastrar\n[2]Adcionar Saldo\n[3]Atualizar Usuario\n[4]Realizar Agendamento\n[5Voltar\n->");
+                        printf("Seja bem vindo!\n\nSelecione a opcao desejada\n[1]Cadastrar\n[2]Adcionar Saldo\n[3]Atualizar Usuario\n[4]Realizar Agendamento\n[5]Voltar\n->");
                     scanf("%i", &esc_cl);
 
                     switch (esc_cl)
@@ -279,11 +280,11 @@ int main () {
 
                         break;
                     case 4:
-                        // system("cls")
-                        // printf("----------------------------------------\n");
-                        // printf("|            Agendamentos              |\n");
-                        // printf("----------------------------------------\n");
-                        // agendamento(&tamanho);
+                        system("cls");
+                        printf("----------------------------------------\n");
+                        printf("|            Agendamentos              |\n");
+                        printf("----------------------------------------\n");
+                        agendamento(cadastro, tamanho);
 
                         break;
                     case 5:
