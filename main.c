@@ -284,7 +284,7 @@ int main () {
                         printf("----------------------------------------\n");
                         printf("|            Agendamentos              |\n");
                         printf("----------------------------------------\n");
-                        agendamento(cadastro, tamanho);
+                        agendamento(&tamanho);
 
                         break;
                     case 5:

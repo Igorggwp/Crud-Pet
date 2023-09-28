@@ -1,10 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-
-
-void agendamento(struct dados *cadastro,  int *tamanho) {
+void agendamento(int *tamanho) {
     int id;
     char senha[20];
     printf("Digite seu ID: ");
@@ -33,7 +27,7 @@ void agendamento(struct dados *cadastro,  int *tamanho) {
                 scanf("%d", &opcao_servico);
 
                 float valor_servico;
-                char tipo_servico[10];
+                char tipo_servico[20];
                 if (opcao_servico == 1) {
                     valor_servico = 50.0;
                     strcpy(tipo_servico, "Banho");
@@ -52,15 +46,21 @@ void agendamento(struct dados *cadastro,  int *tamanho) {
                 if (cadastro[i].saldo >= valor_servico) {
                     cadastro[i].saldo -= valor_servico;
 
-                    // Agendar horário
-                    printf("Escolha o horario (formato HH:MM): ");
-                    scanf("%s", cadastro[i].horario);
 
                     // Atualizar o tipo de serviço
+                    fflush(stdin);
                     strcpy(cadastro[i].servico, tipo_servico);
+                    strcat(cadastro[i].servico, "\n");
+
+
+                    // Agendar horário
+                    fflush(stdin);
+                    printf("Escolha o horario (formato HH:MM): ");
+                    gets(cadastro[i].horario);
+                    strcat(cadastro[i].horario, "\n");
 
                     printf("Agendamento realizado com sucesso:\n");
-                    printf("Tipo de serviço: %s\n", tipo_servico);
+                    printf("Tipo de serviço: %s\n", cadastro[i].servico);
                     printf("Horario agendado: %s\n", cadastro[i].horario);
                     printf("Saldo restante: R$ %.2f\n", cadastro[i].saldo);
                 } else {

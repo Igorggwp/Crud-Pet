@@ -47,11 +47,6 @@ int cadastrar(int *tamanho) {
     gets(cadastro[*tamanho].senha);
     strcat(cadastro[*tamanho].senha, "\n");
 
-    /*fflush(stdin);
-    printf("Digite sua senha de acesso: ");
-    gets(cadastro[*tamanho].servico);
-    strcat(cadastro[*tamanho].servico, "\n");*/
-
    // Inicializa servico e horario com espaco vazio
     strcpy(cadastro[*tamanho].servico, "\n");
     strcpy(cadastro[*tamanho].horario, "\n");

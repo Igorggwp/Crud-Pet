@@ -37,10 +37,8 @@ int atualizar(int *tamanho) {
                         printf("[3] Pet: %s\n", cadastro[i].pet);
                         printf("[4] Raca do Pet: %s\n", cadastro[i].raca);
                         printf("[5] Senha do Usuario: %s\n", cadastro[i].senha);
-                        printf("[6] Senha do Usuario: %s\n", cadastro[i].servico);
-                        printf("[7] Horario Marcado: %s\n", cadastro[i].horario);
-                        printf("[8] Alterar todos os dados\n");
-                        printf("[9] Cancelar\n");
+                        printf("[6] Alterar todos os dados\n");
+                        printf("[7] Cancelar\n");
                         printf("-------------------\n");
                         new = i;
                         scanf("%i", &subs);
