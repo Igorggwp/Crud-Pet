@@ -49,9 +49,9 @@ marley
 cao
 pug
 6
-
-
-0.000000
+Banho
+10:20
+50.000000
 7
 Igor
 Chaminha
