@@ -31,7 +31,7 @@ void agendamento(int *tamanho) {
         // Mostrar o saldo atual
         printf("Seu saldo atual: R$ %.2f\n", cadastro[exist].saldo);
 
-        // Oferecer opções de serviço1
+        // Oferecer opções de serviço
         printf("Escolha o tipo de servico:\n");
         printf("[1] Banho (R$ 50)\n");
         printf("[2] Tosa (R$ 50)\n");
@@ -73,9 +73,16 @@ void agendamento(int *tamanho) {
                 gets(cadastro[exist].horario);
                 strcat(cadastro[exist].horario, "\n");
 
+                // Agendar data
+                fflush(stdin);
+                printf("Escolhaa data (formato DD/MM/AAAA): ");
+                gets(cadastro[exist].data);
+                strcat(cadastro[exist].data, "\n");
+
                 printf("Agendamento realizado com sucesso:\n");
                 printf("Tipo de serviço: %s\n", cadastro[exist].servico);
                 printf("Horario agendado: %s\n", cadastro[exist].horario);
+                printf("Data agendada: %s\n", cadastro[exist].data);
                 printf("Saldo restante: R$ %.2f\n", cadastro[exist].saldo);
             } else {
                 printf("Saldo insuficiente para agendar o servico.\n");

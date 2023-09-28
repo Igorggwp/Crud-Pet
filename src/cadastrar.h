@@ -50,6 +50,7 @@ int cadastrar(int *tamanho) {
    // Inicializa servico e horario com espaco vazio
     strcpy(cadastro[*tamanho].servico, "\n");
     strcpy(cadastro[*tamanho].horario, "\n");
+    strcpy(cadastro[*tamanho].data, "\n");
 
     fflush(stdin);
     cadastro[*tamanho].saldo = 0.00;

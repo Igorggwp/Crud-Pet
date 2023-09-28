@@ -29,6 +29,7 @@ int excluir(int *tamanho) {
             printf("Saldo: %.2f\n", cadastro[i].saldo);
             printf("Servico Atual: %s\n", cadastro[i].servico);
             printf("Horario Atual: %s\n", cadastro[i].horario);
+            printf("Data Atual: %s\n", cadastro[i].data);
             // confirmacao para excluir
             printf("Tem certeza que deseja excluir esse usuario? (Acao nao reversivel.)\n[1]Sim\n[2]Nao\n->");
             if (scanf("%d", &esc) != 1) {

@@ -71,7 +71,7 @@ int atualizar(int *tamanho) {
 
                         break;
                     case 4:
-                        printf("Senha do Usuario: ");
+                        printf("Raca do Pet: ");
                         fflush(stdin);
                         gets(cadastro[new].raca);
                         strcat(cadastro[new].raca, "\n");

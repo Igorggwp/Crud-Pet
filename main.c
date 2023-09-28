@@ -12,6 +12,7 @@ struct dados {
     char senha[20];
     char servico[20]; 
     char horario[20];
+    char data [20];
     float saldo;
 }*cadastro; 
 
@@ -50,6 +51,7 @@ int init(int *tamanho) {
     while (fgets(vet, 100, file) != NULL) { // Le o arquivo linha por linha
         
         if(cont == 0){
+
             if(mal == 0){ // Alocação de memoria para a struct dados e inicializacao de campos
                 cadastro = (struct dados*) malloc(sizeof(struct dados));
                 mal++;
@@ -97,10 +99,14 @@ int init(int *tamanho) {
         }
         if(cont == 8){
             strcpy(aux, vet);
+            strcpy(cadastro[i].data, aux);
+        }
+        if(cont == 9){
+            strcpy(aux, vet);
             cadastro[i].saldo = atof(aux);
         }
         cont++;
-        if (cont >=9){
+        if (cont >=10){
             cont = 0; // Reinicia o contador de campos
         }   
     }
@@ -185,6 +191,7 @@ int finit(int *tamanho) {
         fprintf(file, "%s", cadastro[i].senha);
         fprintf(file, "%s", cadastro[i].servico);
         fprintf(file, "%s", cadastro[i].horario);
+        fprintf(file, "%s", cadastro[i].data);
         fprintf(file, "%f\n", cadastro[i].saldo);
     }
     fclose(file); // Fecha o arquivo

@@ -18,6 +18,7 @@ int listar(int *tamanho) {
             printf("Senha: %s", cadastro[i].senha);
             printf("Servico: %s", cadastro[i].servico);
             printf("Horario: %s", cadastro[i].horario);
+            printf("Data: %s", cadastro[i].data);
             printf("Saldo: %.2f\n", cadastro[i].saldo);
             printf("------------------------------\n\n");
             usuarios++;
