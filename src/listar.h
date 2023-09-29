@@ -1,5 +1,7 @@
-int listar(int *tamanho) {
-    int usuarios = 0;
+/* Listar Clientes */
+
+int listar(int *tamanho) { // Ponteiro tamanho como parametro
+    int usuarios = 0; // Variavel para contar o numero de usuarios
 
     // Verifica se o ponteiro 'cadastro' é nulo
     if (cadastro == NULL) {
@@ -25,9 +27,10 @@ int listar(int *tamanho) {
         }
     }
 
+    // Caso nao tenha usuarios cadastrados
     if (usuarios == 0) {
         printf("Nenhum usuário cadastrado.\n");
     }
 
-    return usuarios;
+    return usuarios; // Retorna os usuarios
 }

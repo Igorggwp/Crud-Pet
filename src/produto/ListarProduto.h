@@ -1,8 +1,15 @@
 /* Listar Produtos */
 
-int ListarProdutos(int *tamanho_produto) {
-    int usuarios = 0;
+int ListarProdutos(int *tamanho_produto) { // Ponteiro tamanho_produto como parametro
+    int usuarios = 0; // Variavel para contar o numero de usuarios
 
+    // Verifica se o ponteiro 'cadastro' é nulo
+    if (cadastro == NULL) {
+        printf("Erro: Nenhum cadastro encontrado.\n");
+        return 0;
+    }
+
+    // Loop para varrer todos os Cadastros e exibir todos na tela
     for (int i = 0; i < *tamanho_produto; i++) {
         if (produtos[i].id != 0) {
             printf("ID: %d\n", produtos[i].id);
@@ -14,9 +21,10 @@ int ListarProdutos(int *tamanho_produto) {
         }
     }
 
+    // Caso nao tenha usuarios cadastrados
     if (usuarios == 0) {
         return 0;
     }
 
-    return usuarios;
+    return usuarios; // Retorna os usuarios
 }

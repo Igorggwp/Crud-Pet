@@ -1,4 +1,6 @@
-int atualizar(int *tamanho) {
+/* Atualizar Cliente */
+
+int atualizar(int *tamanho) { // Ponteiro tamanho como parametro
     int idat, subs, exist = -1, new, new2, atualizado = 1;
     char senha[10];
 
@@ -8,7 +10,7 @@ int atualizar(int *tamanho) {
         return 0;
     }
     
-    for (int i = 0; i < *tamanho; i++) {
+    for (int i = 0; i < *tamanho; i++) { // Verificacao do ID
         if (idat == cadastro[i].id) {
             exist = i;
         }
@@ -17,7 +19,7 @@ int atualizar(int *tamanho) {
     if (exist == -1) {
         printf("\nCadastro nao encontrado!\n");
     } else {
-        printf("Digite sua senha: ");
+        printf("Digite sua senha: "); // Verificacao de senha
         fflush(stdin);
         fgets(senha, 10, stdin);
         fflush(stdin);
@@ -25,7 +27,7 @@ int atualizar(int *tamanho) {
             printf("Senha Incorreta.\n");
             return 0;
         } else {
-            do {
+            do { // Verifica os dados do usuario
                 printf("-------------------\n");
                 for (int i = 0; i < *tamanho; i++) {
                     if (idat == cadastro[i].id) {
@@ -46,7 +48,7 @@ int atualizar(int *tamanho) {
                 }
 
                 switch (subs) {
-                    case 1:
+                    case 1: // Atualizar Dono
                         printf("Nome do Dono: ");
                         fflush(stdin);
                         gets(cadastro[new].dono);
@@ -54,7 +56,7 @@ int atualizar(int *tamanho) {
                         atualizado = 1;
 
                         break;
-                    case 2:
+                    case 2: // Atualizar Nome do Pet
                         printf(" Nome do Pet: ");
                         fflush(stdin);
                         gets(cadastro[new].nome);
@@ -62,7 +64,7 @@ int atualizar(int *tamanho) {
                         atualizado = 1;
 
                         break;
-                    case 3:
+                    case 3: // Atualizar o Pet
                         printf("Pet: ");
                         fflush(stdin);
                         gets(cadastro[new].pet);
@@ -70,7 +72,7 @@ int atualizar(int *tamanho) {
                         atualizado = 1;
 
                         break;
-                    case 4:
+                    case 4: // Atualizar a Raca do Pet
                         printf("Raca do Pet: ");
                         fflush(stdin);
                         gets(cadastro[new].raca);
@@ -78,7 +80,7 @@ int atualizar(int *tamanho) {
                         atualizado = 1;
 
                         break;
-                    case 5:
+                    case 5: // Atualizar a Senha do Usuario
                         printf("Senha: ");
                         fflush(stdin);
                         gets(cadastro[new].senha);
@@ -86,7 +88,7 @@ int atualizar(int *tamanho) {
                         atualizado = 1;
 
                         break;
-                    case 6:
+                    case 6: // Atualizar Todos os Dados
                         printf("Dono: ");
                         fflush(stdin);
                         gets(cadastro[new].dono);
@@ -119,7 +121,7 @@ int atualizar(int *tamanho) {
 
                         break;
                 }
-                if (atualizado == 1) {
+                if (atualizado == 1) { // Caso atualizar
                     printf("----------------------------------------\n");
                     printf("|      Dados atualizados com sucesso!   |\n");
                     printf("----------------------------------------\n");
@@ -127,7 +129,7 @@ int atualizar(int *tamanho) {
                     printf("[1] SIM\n");
                     printf("[2] NAO\n");
                     scanf("%i", &new2);
-                } else {
+                } else { // Caso nao atualizar
                     printf("----------------------------------------\n");
                     printf("|      Operacao Cancelada              |\n");
                     printf("----------------------------------------\n");
@@ -140,4 +142,5 @@ int atualizar(int *tamanho) {
         }
     }
     finit(tamanho);
+    return 0;
 }

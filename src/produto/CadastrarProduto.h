@@ -1,6 +1,6 @@
 /* Cadastrar Produto */
 
-int CadastrarProduto(int *tamanho_produto) {
+int CadastrarProduto(int *tamanho_produto) { // Ponteiro tamanho_produto como parametro
     int idcad = 0;
 
     // Itera sobre os cadastros existentes para encontrar o maior ID

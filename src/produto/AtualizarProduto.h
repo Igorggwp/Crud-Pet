@@ -1,15 +1,15 @@
 /* Atualizar Produto */
 
-void AtualizarProduto(int *tamanho_produto) {
+int AtualizarProduto(int *tamanho_produto) { // Ponteiro tamanho_produto como parametro
     int idat, subs, exist = -1, new, new2, atualizado = 1;
 
     printf("Digite o ID do cadastro que deseja atualizar\nDigite 0 para cancelar\n->");
     scanf("%i", &idat);
     if (idat == 0) {
-        return;
+        return 0;
     }
 
-    for (int i = 0; i < *tamanho_produto; i++) {
+    for (int i = 0; i < *tamanho_produto; i++) { // Verificacao do ID do produto
         if (idat == produtos[i].id) {
             exist = i;
         }
@@ -18,7 +18,7 @@ void AtualizarProduto(int *tamanho_produto) {
     if (exist == -1) {
         printf("\nCadastro nao encontrado!\n");
     } else {
-        do {
+        do { // Verifica os dados do produto
             printf("-------------------\n");
             for (int i = 0; i < *tamanho_produto; i++) {
                 if (idat == produtos[i].id) {
@@ -37,26 +37,26 @@ void AtualizarProduto(int *tamanho_produto) {
             }
 
             switch (subs) {
-                case 1:
+                case 1: // Atualizar Nome do Produto
                     printf("Nome do Produto: ");
                     fflush(stdin);
                     gets(produtos[new].nome);
                     strcat(produtos[new].nome, "\n");
                     atualizado = 1;
                     break;
-                case 2:
+                case 2: // Atualizar Quantidade de Produtos
                     printf("Quantidade de Produtos: ");
                     fflush(stdin);
                     scanf("%d", &produtos[new].quantidade);
                     atualizado = 1;
                     break;
-                case 3:
+                case 3: // Atualizar Valor do Produto
                     printf("Valor do Produto: ");
                     fflush(stdin);
                     scanf("%f", &produtos[new].preco);
                     atualizado = 1;
                     break;
-                case 4:
+                case 4: // Atualizar Todos os Dados
                     printf("Nome do Produto: ");
                     fflush(stdin);
                     gets(produtos[new].nome);
@@ -75,7 +75,7 @@ void AtualizarProduto(int *tamanho_produto) {
                     atualizado = 0;
                     break;
             }
-            if (atualizado == 1) {
+            if (atualizado == 1) { // Caso atualizar
                 printf("----------------------------------------\n");
                 printf("|      Dados atualizados com sucesso!   |\n");
                 printf("----------------------------------------\n");
@@ -83,7 +83,7 @@ void AtualizarProduto(int *tamanho_produto) {
                 printf("[1] SIM\n");
                 printf("[2] NAO\n");
                 scanf("%i", &new2);
-            } else {
+            } else { // Caso nao atualizar
                 printf("----------------------------------------\n");
                 printf("|      Operacao Cancelada              |\n");
                 printf("----------------------------------------\n");
@@ -95,4 +95,5 @@ void AtualizarProduto(int *tamanho_produto) {
         } while (new2 == 1);
     }
     pfinit(tamanho_produto);
+    return 0;
 }

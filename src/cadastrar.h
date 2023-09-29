@@ -1,6 +1,6 @@
 /* Cadastrar Clientes */
 
-int cadastrar(int *tamanho) {
+int cadastrar(int *tamanho) { // Ponteiro tamanho como parametro
     int idcad = 0;
 
     // Itera sobre os cadastros existentes para encontrar o maior ID

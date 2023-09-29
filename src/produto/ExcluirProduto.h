@@ -1,6 +1,6 @@
 /* Excluir Produto */
 
-int ExcluirProduto(int *tamanho_produto) {
+int ExcluirProduto(int *tamanho_produto) { // Ponteiro tamanho_produto como parametro
     int idb = 0, flag = 0, esc = 0;
 
     //inicio do loop princiapl

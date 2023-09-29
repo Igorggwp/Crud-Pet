@@ -1,4 +1,6 @@
-int excluir(int *tamanho) {
+/* Excluir Cliente */
+
+int excluir(int *tamanho) { // Ponteiro tamanho como parametro
     int idb = 0, flag = 0, esc = 0;
 
     //inicio do loop princiapl

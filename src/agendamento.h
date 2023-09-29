@@ -1,6 +1,8 @@
 void agendamento(int *tamanho) {
     int idservico = 0, exist = -1;
     char senha[20];
+    char novaData[20];
+    char novoHorario[20];
     do {
         printf("Digite seu ID: ");
         scanf("%i", &idservico);
@@ -69,14 +71,30 @@ void agendamento(int *tamanho) {
 
                 // Agendar horário
                 fflush(stdin);
+                printf("Escolha a data (formato DD/MM/AAAA): ");
+                scanf("%s", novaData);
+                fflush(stdin);
+                printf("OBSERVACAO! Os nossos procedimentos tem duracao de 1 hora, escolha horarios como 10:00, 14:00, 17:00... \n");
                 printf("Escolha o horario (formato HH:MM): ");
-                gets(cadastro[exist].horario);
+                scanf("%s", novoHorario);
+
+                // Verifica se a data e horario sao iguais de outro usuario
+                for (int i = 0; i < *tamanho; i++) {
+                    if (i != exist &&
+                        strcmp(novaData, cadastro[i].data) == 0 &&
+                        strcmp(novoHorario, cadastro[i].horario) == 0) {
+                        printf("Data e horario ja estao ocupados.\n");
+                        return;
+                    }
+                }
+
+                // Salvar no cadastro da pessoa, os dados atualizados de Horario e Data
+                fflush(stdin);
+                strcpy(cadastro[exist].horario, novoHorario);
                 strcat(cadastro[exist].horario, "\n");
 
-                // Agendar data
                 fflush(stdin);
-                printf("Escolhaa data (formato DD/MM/AAAA): ");
-                gets(cadastro[exist].data);
+                strcpy(cadastro[exist].data, novaData);
                 strcat(cadastro[exist].data, "\n");
 
                 printf("Agendamento realizado com sucesso:\n");
