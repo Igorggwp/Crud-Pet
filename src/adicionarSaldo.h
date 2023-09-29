@@ -1,23 +1,27 @@
 /* Adcionar Saldo ao Cliente */
 
-void adicionarSaldo(int *tamanho) { // Ponteiro tamanho como parametro
+void adicionarSaldo(int *tamanho){ // Ponteiro tamanho como parametro
     int idsaldo = 0, exist = -1;
     float saldo = 0;
     char senha[10];
 
-    do {
-        printf("Digite seu ID: "); 
+    do
+    {
+        printf("Digite seu ID: ");
         scanf("%i", &idsaldo);
     } while (idsaldo <= 0);
 
-    for (int i = 0; i < *tamanho; i++) {
-        if (idsaldo == cadastro[i].id) {
+    for (int i = 0; i < *tamanho; i++)
+    {
+        if (idsaldo == cadastro[i].id)
+        {
             exist = i;
             break;
         }
     }
 
-    if (exist == -1) {
+    if (exist == -1)
+    {
         printf("ID nao encontrado.\n");
         return;
     }
@@ -27,10 +31,13 @@ void adicionarSaldo(int *tamanho) { // Ponteiro tamanho como parametro
     fgets(senha, 10, stdin);
     fflush(stdin);
 
-    if (strcmp(senha, cadastro[exist].senha) != 0) { // Verifica a senha
+    if (strcmp(senha, cadastro[exist].senha) != 0)
+    { // Verifica a senha
         printf("Senha incorreta.\n");
         return;
-    } else {
+    }
+    else
+    {
         printf("Digite o valor que deseja adicionar: ");
         scanf("%f", &saldo);
 

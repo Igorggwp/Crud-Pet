@@ -1,22 +1,25 @@
 /* Cadastrar Produto */
 
-int CadastrarProduto(int *tamanho_produto) { // Ponteiro tamanho_produto como parametro
+int CadastrarProduto(int *tamanho_produto){ // Ponteiro tamanho_produto como parametro
     int idcad = 0;
 
     // Itera sobre os cadastros existentes para encontrar o maior ID
-    for (int i = 0; i < *tamanho_produto; i++) {
-        if (produtos[i].id > idcad) {
+    for (int i = 0; i < *tamanho_produto; i++)
+    {
+        if (produtos[i].id > idcad)
+        {
             idcad = produtos[i].id;
         }
     }
 
-    idcad++;  // Incrementa o maior ID encontrado para obter o proximo ID disponivel
+    idcad++; // Incrementa o maior ID encontrado para obter o proximo ID disponivel
 
     // Realoca memoria para o vetor 'cadastro' para acomodar o novo cadastro
     produtos = (struct produto *)realloc(produtos, (*tamanho_produto + 1) * sizeof(struct produto));
 
-    if (produtos == NULL) { // Verifica se a realocação foi bem-sucedida
-        printf("Erro na realocacao de memoria.\n");
+    if (produtos == NULL)
+    { // Verifica se a realocação foi bem-sucedida
+        printf("Erro na realocação de memória.\n");
         return 0;
     }
 
@@ -38,5 +41,5 @@ int CadastrarProduto(int *tamanho_produto) { // Ponteiro tamanho_produto como pa
     *tamanho_produto += 1; // Atualiza o tamanho do vetor 'cadastro'
 
     pfinit(tamanho_produto); // Chama a função 'finit' para finalizar o cadastro
-    return idcad; // Retorna o ID cadastrado
+    return idcad;            // Retorna o ID cadastrado
 }

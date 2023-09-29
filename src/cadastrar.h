@@ -1,22 +1,25 @@
 /* Cadastrar Clientes */
 
-int cadastrar(int *tamanho) { // Ponteiro tamanho como parametro
+int cadastrar(int *tamanho){ // Ponteiro tamanho como parametro
     int idcad = 0;
 
     // Itera sobre os cadastros existentes para encontrar o maior ID
-    for (int i = 0; i < *tamanho; i++) {
-        if (cadastro[i].id > idcad) {
+    for (int i = 0; i < *tamanho; i++)
+    {
+        if (cadastro[i].id > idcad)
+        {
             idcad = cadastro[i].id;
         }
     }
 
-    idcad++;  // Incrementa o maior ID encontrado para obter o proximo ID disponivel
+    idcad++; // Incrementa o maior ID encontrado para obter o proximo ID disponivel
 
     // Realoca memoria para o vetor 'cadastro' para acomodar o novo cadastro
     cadastro = (struct dados *)realloc(cadastro, (*tamanho + 1) * sizeof(struct dados));
 
-    if (cadastro == NULL) { // Verifica se a realocação foi bem-sucedida
-        printf("Erro na realocacao de memoria.\n");
+    if (cadastro == NULL)
+    { // Verifica se a realocação foi bem-sucedida
+        printf("Erro na realocação de memória.\n");
         return 0;
     }
 
@@ -33,12 +36,12 @@ int cadastrar(int *tamanho) { // Ponteiro tamanho como parametro
     strcat(cadastro[*tamanho].nome, "\n");
 
     fflush(stdin);
-    printf("Digite qual animal e seu pet: ");
+    printf("Digite qual animal é seu pet: ");
     gets(cadastro[*tamanho].pet);
     strcat(cadastro[*tamanho].pet, "\n");
 
     fflush(stdin);
-    printf("Digite a raca do pet: ");
+    printf("Digite a raça do pet: ");
     gets(cadastro[*tamanho].raca);
     strcat(cadastro[*tamanho].raca, "\n");
 
@@ -47,17 +50,17 @@ int cadastrar(int *tamanho) { // Ponteiro tamanho como parametro
     gets(cadastro[*tamanho].senha);
     strcat(cadastro[*tamanho].senha, "\n");
 
-   // Inicializa servico e horario com espaco vazio
+    // Inicializa servico e horario com espaco vazio
     strcpy(cadastro[*tamanho].servico, "\n");
     strcpy(cadastro[*tamanho].horario, "\n");
     strcpy(cadastro[*tamanho].data, "\n");
 
     fflush(stdin);
     cadastro[*tamanho].saldo = 0.00;
-    printf("CADASTRADO COM SUCESSO!\nSeu ID e: %d\n", idcad);
+    printf("CADASTRADO COM SUCESSO!\nSeu ID é: %d\n", idcad);
 
     *tamanho += 1; // Atualiza o tamanho do vetor 'cadastro'
 
     finit(tamanho); // Chama a função 'finit' para finalizar o cadastro
-    return idcad; // Retorna o ID cadastrado
+    return idcad;   // Retorna o ID cadastrado
 }
