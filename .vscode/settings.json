@@ -3,7 +3,8 @@
         "listarproduto.h": "c",
         "excluirproduto.h": "c",
         "procurarproduto.h": "c",
-        "cadastrarproduto.h": "c"
+        "cadastrarproduto.h": "c",
+        "stdlib.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

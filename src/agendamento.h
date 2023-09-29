@@ -39,7 +39,7 @@ void agendamento(int *tamanho) {
         printf("[2] Tosa (R$ 50)\n");
         printf("[3] Banho e Tosa (R$ 100)\n");
         printf("[4] Cancelar\n");
-        printf("Digite a opcao desejada: ");
+        printf("Digite a opção desejada: ");
         int opcao_servico;
         scanf("%d", &opcao_servico);
 
@@ -74,8 +74,8 @@ void agendamento(int *tamanho) {
                 printf("Escolha a data (formato DD/MM/AAAA): ");
                 scanf("%s", novaData);
                 fflush(stdin);
-                printf("OBSERVACAO! Os nossos procedimentos tem duracao de 1 hora, escolha horarios como 10:00, 14:00, 17:00... \n");
-                printf("Escolha o horario (formato HH:MM): ");
+                printf("OBSERVACAO! Os nossos procedimentos tem duração de 1 hora, escolha horários como 10:00, 14:00, 17:00... \n");
+                printf("Escolha o horário (formato HH:MM): ");
                 scanf("%s", novoHorario);
 
                 // Verifica se a data e horario sao iguais de outro usuario
