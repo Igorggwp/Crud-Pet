@@ -78,16 +78,6 @@ void agendamento(int *tamanho) {
                 printf("Escolha o horário (formato HH:MM): ");
                 scanf("%s", novoHorario);
 
-                // Verifica se a data e horario sao iguais de outro usuario
-                for (int i = 0; i < *tamanho; i++) {
-                    if (i != exist &&
-                        strcmp(novaData, cadastro[i].data) == 0 &&
-                        strcmp(novoHorario, cadastro[i].horario) == 0) {
-                        printf("Data e horario ja estao ocupados.\n");
-                        return;
-                    }
-                }
-
                 // Salvar no cadastro da pessoa, os dados atualizados de Horario e Data
                 fflush(stdin);
                 strcpy(cadastro[exist].horario, novoHorario);
